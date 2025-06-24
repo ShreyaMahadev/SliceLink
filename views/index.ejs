@@ -1,89 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="ISO-8859-1">
-        <title>URL Shortener</title>
-        <meta name="description" content="Nodejs Url Shortener">
-        <meta name="robots" content="index, follow">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta http-equiv="cache-control" content="no-cache">
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="container padding-no margin-no margin-auto">
-            <nav class="nav navbar-default col-xs-12 col-sm-11 col-md-8 col-lg-8">
-                <div class="container padding-no margin-no">
-                    
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#toggleNav">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    
-                    <div class="navbar-header">
-                        <a href="/" class="navbar-brand">Node.js URL Shortener</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        
-        <div class="canvas">
-            <div class="canvas-cover">
-                <div class="container">
-                    <h1>Shareable Shortened Links</h1>
-                    
-                    <div class="shortener">
-                        <div class="col-xs-12 col-sm-8 col-md-10 padding-no">
-                            <input type="text" class="shortener softHidden disabled" id="shortenLinkCopy" readonly="readonly">
-                            <input type="text" class="shortener" placeholder="Your url to shorten" id="shortenLink">
-                        </div>
-                        
-                        <div class="col-xs-12 col-sm-4 col-md-2 padding-no">
-                            <div class="btn shortener" id="shortenLinkButton">Shorten!</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="container">
-            
-            <div class="segment">
-                <h1>Shorten a URL Link so It's Easier to Share Online</h1>
-                
-                <div class="col-xs-12 col-sm-6 col-md-6 promote">
-                    <i class="fa fa-link"></i>
-                    <b>Short Your Link</b>
-                </div>
-                
-                <div class="col-xs-12 col-sm-6 col-md-6 promote">
-                    <i class="fa fa-share-alt"></i>
-                    <b>Share Your Shortened Link</b>
-                </div>
-                
-                <div class="clear"></div>
-            </div>
-            
-            <div class="segment">
-                <h1>Total Achievements</h1>
-                
-                <div class="col-xs-12 col-md-12 center">
-                    <h1 class="liveNumber" id="liveLinkCreated"><%= total_links %></h1>
-                    links shortened until today!!
-                </div>
-                
-                <div class="clear"></div>
-            </div>
-        </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Modern Node.js URL Shortener">
+  <title>SliceLink</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f9f9f9, #e0f7fa);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    nav {
+      background-color: #007bff;
+    }
+    nav .navbar-brand {
+      color: #fff;
+      font-weight: bold;
+    }
+    .main-header {
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .main-header h1 {
+      font-size: 2.5rem;
+      color: #007bff;
+      font-weight: 600;
+    }
+    .shortener {
+      max-width: 800px;
+      margin: 2rem auto;
+    }
+    .shortener input[type="text"] {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+    .shortener button {
+      width: 100%;
+      padding: 1rem;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 0.5rem;
+    }
+    .features, .stats {
+      margin: 3rem 0;
+      text-align: center;
+    }
+    .feature-box i {
+      font-size: 2rem;
+      color: #007bff;
+      margin-bottom: 1rem;
+    }
+    .feature-box {
+      padding: 2rem;
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin: 1rem;
+    }
+    .liveNumber {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">SliceLink</a>
+    </div>
+  </nav>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="scripts.js"></script>
-    </body>
+  <div class="main-header">
+    <h1>Simplify Your Links. Share Effortlessly.</h1>
+  </div>
+
+  <div class="container shortener">
+    <input type="text" id="shortenLink" class="form-control" placeholder="Paste your long URL here...">
+    <input type="text" id="shortenLinkCopy" class="form-control" readonly placeholder="Your shortened URL will appear here">
+    <button id="shortenLinkButton">Shorten URL</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script>
+    $('#shortenLinkButton').click(function () {
+      const url = $('#shortenLink').val();
+      $.post('/short', { url }, function (data) {
+        $('#shortenLinkCopy').val(data);
+      }).fail(function () {
+        alert('Invalid URL or error occurred.');
+      });
+    });
+  </script>
+</body>
 </html>
