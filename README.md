@@ -2,6 +2,10 @@
 
 A simple and efficient URL Shortener built with **Node.js**, **Express**, and **MongoDB**. It allows users to input long URLs and generate shortened versions for easy sharing.
 
+## Live Demo
+
+You can check out the live project here: [SliceLink](https://slicelink.onrender.com/)
+
 ## Features
 
 - Shorten long URLs to easily shareable links
@@ -48,6 +52,8 @@ A simple and efficient URL Shortener built with **Node.js**, **Express**, and **
    npm start
    ```
    The application will be available at [http://localhost:3000](http://localhost:3000)
+
+---
 
 ## Usage
 
